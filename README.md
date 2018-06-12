@@ -19,12 +19,12 @@ The goals / steps of this project are the following:
 
 ### Reflection
 
-The pipeline is consisted of the following steps and implemented in process_image method
+The pipeline was implemented in process_image method and consists of the following steps:
 * Convert image to grayscale
-* For better yellow line isolation convert image using HSV (Hue value saturation). Apply white mask to gray image and yellow mask to HSV image. Combine masks in result image.
+* For better yellow line isolation convert image using HSV (Hue value saturation). Apply white mask to gray image and yellow mask to HSV image. Combine masks in result image. Yellow range was found using varios examples from google. The pipeline works actually fine without hsv, but it dramatically improved "challenge.mp4" results. Also it was found that it negatively impact results if visibility is lower. 
 * Blurs an image using a Gaussian filter for noise supresion. 
 * Find edges using Canny Edge Detection.
-* Calculate Region of Interests (ROI)
+* Calculate Region of Interests (ROI). Implemented as roi_shape function. Initially tested with hardcoded coordinates, but as very simple attemp to make it more flexible was expressed in shape fractions. 
 * Apply ROI to image for scope reduction.  
     Image outside ROI is set to black.
 * Apply Hough transformation for line detection.
@@ -35,8 +35,9 @@ The pipeline is consisted of the following steps and implemented in process_imag
   2. Filter out (almost) horizontal lines and lines with inf slope.
   3. Separate, base on slope, left and right lines. (we need to keep in mind that upper-left coner is a begining of coordinates. )
   4. Compute averages for slope and lines
-  5. Smooth lines if intersect
-  6. If runs against video file smooth previous and current frames and save current frame to cache
+  5. Smooth lines if they are intersected
+  6. If runs against video file smooth previous and current frames and save current frame to cache.
+     Different coeficieants were tested but 0.2 showed the best results.
 * Overlay image with lines over unmodified image.
 
 The pipeline was tested in 2 modes:
@@ -86,4 +87,3 @@ It can be affected by more steep turns, front cars,  hills...
 
 * Improve identification process under various visibility conditions. 
 * Flexible region of interest for better processing turns, ups and downs, cars, or camera placement.
-
