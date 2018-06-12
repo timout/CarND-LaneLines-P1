@@ -22,9 +22,9 @@ The goals / steps of this project are the following:
 The pipeline was implemented in process_image method and consists of the following steps:
 * Convert image to grayscale
 * For better yellow line isolation convert image using HSV (Hue value saturation). Apply white mask to gray image and yellow mask to HSV image. Combine masks in result image. Yellow range was found using varios examples from google. The pipeline works actually fine without hsv, but it dramatically improved "challenge.mp4" results. Also it was found that it negatively impact results if visibility is lower. 
-* Blurs an image using a Gaussian filter for noise supresion. 
+* Blurs an image using a Gaussian filter for noise suppression. 
 * Find edges using Canny Edge Detection.
-* Calculate Region of Interests (ROI). Implemented as roi_shape function. Initially tested with hardcoded coordinates, but as very simple attemp to make it more flexible was expressed in shape fractions. 
+* Calculate Region of Interests (ROI). Implemented as roi_shape function. Initially tested with hardcoded coordinates, but as a very simple attemp to make it more flexible was expressed in shape fractions. 
 * Apply ROI to image for scope reduction.  
     Image outside ROI is set to black.
 * Apply Hough transformation for line detection.
