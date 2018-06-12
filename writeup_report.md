@@ -86,4 +86,3 @@ It can be affected by more steep turns, front cars,  hills...
 
 * Improve identification process under various visibility conditions. 
 * Flexible region of interest for better processing turns, ups and downs, cars, or camera placement.
-
